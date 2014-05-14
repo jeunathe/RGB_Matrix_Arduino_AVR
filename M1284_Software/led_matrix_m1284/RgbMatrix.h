@@ -34,14 +34,14 @@
 #endif
 
 #ifndef USE_DOUBLE_BUFFERING
-#define USE_DOUBLE_BUFFERING  // Uncomment this line to enable double buffering by default
+//#define USE_DOUBLE_BUFFERING  // Uncomment this line to enable double buffering by default
 #endif
 #ifndef USE_TRIPLE_BUFFERING
 //#define USE_TRIPLE_BUFFERING // Uncomment this line to enable triple buffering by default
 #endif
 
 #ifndef NB_HORIZONTAL_MATRIX
-#define NB_HORIZONTAL_MATRIX 1 // Default matrix configuration
+#define NB_HORIZONTAL_MATRIX 2 // Default matrix configuration
 #endif
 #ifndef NB_VERTICAL_MATRIX
 #define NB_VERTICAL_MATRIX 1 // Default matrix configuration

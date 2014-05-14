@@ -2,9 +2,11 @@
 #include <util/delay.h> /* For delay */
 #include <stdint.h>     /* For hardcoded type */
 #include "RgbMatrix.h"  /* For the RGB matrix driver API */
+#include <stdlib.h>
 
 /** Program entry point */
 int main(void) {
+int xx=0;
 
   /* Setup hardware */
   setupMatrixDriver();
@@ -24,6 +26,7 @@ int main(void) {
 	  for(uint8_t x = 0; x < NB_COLUMNS_COUNT; ++x) {
 	
 		/* Draw color pattern */
+/*
 #define COLOR_STEP 15
 	    if((r += COLOR_STEP) >= 256 - COLOR_STEP) {
           r = 0;
@@ -36,12 +39,16 @@ int main(void) {
             }
           }
         }
-	    setPixelAt(x, y, r, g, b);
+*/
+	    setPixelAt(x, y, xx, rand()%128, rand()%128);
+//	    setPixelAt(x, y, (x+xx) & 0xFF, (y+xx) & 0xFF, (x+y+xx) & 0xFF);
+xx++;
 		
 		// Add some delay to clearly see the drawing artifact when not using double buffering
-		_delay_us(150);
+//		_delay_us(150);
 	  }
 	}
+//xx++;
 	
 #if defined(USE_DOUBLE_BUFFERING) || defined(USE_TRIPLE_BUFFERING)
     // Rotate buffer if double or triple buffering is used
@@ -49,7 +56,7 @@ int main(void) {
 #endif
 	
     // Inter frame delay
-    _delay_ms(500);
+//    _delay_ms(200);
   }
   
   /* Compiler fix */

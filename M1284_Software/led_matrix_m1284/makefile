@@ -2,7 +2,7 @@
 TARGET ?= atmega1284p
 
 # System clock frequency
-F_CPU ?= 16000000
+F_CPU ?= 20000000
 
 # Source files to compile
 SOURCES = main.c RgbMatrix.c
@@ -11,12 +11,12 @@ SOURCES = main.c RgbMatrix.c
 OUTPUT = rgbLedMatrix
 
 # Programmer name
-AVRDUDE_PROGRAMMER ?= usbtiny
+AVRDUDE_PROGRAMMER ?= buspirate
 
 # RGB Matrix configuration
 CCFLAGS += -DUSE_GAMMA_CORRECTION
-CCFLAGS += -DUSE_DOUBLE_BUFFERING
-#CCFLAGS += -DUSE_TRIPLE_BUFFERING
+#CCFLAGS += -DUSE_DOUBLE_BUFFERING
+CCFLAGS += -DUSE_TRIPLE_BUFFERING
 CCFLAGS += -DNB_HORIZONTAL_MATRIX=2
 CCFLAGS += -DNB_VERTICAL_MATRIX=1
 CCFLAGS += -DNB_RESOLUTION_BITS=4
@@ -31,7 +31,7 @@ OBJECTS =  $(SOURCES:.c=.o)
 COMPILER = avr-g++ -mmcu=$(TARGET) -DF_CPU=$(F_CPU)UL
 OBJCOPY = avr-objcopy -O ihex
 OBJSIZE = avr-size -C --mcu=$(TARGET)
-AVRDUDE_ICSP = avrdude -p $(TARGET) -c $(AVRDUDE_PROGRAMMER)
+AVRDUDE_ICSP = avrdude -P /dev/ttyUSB0 -p $(TARGET) -c $(AVRDUDE_PROGRAMMER)
 
 all: elf hex size
 
